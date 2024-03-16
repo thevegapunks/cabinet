@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,7 +21,6 @@ public class MedicalHistory {
     private Long idHistory;
 
     @ManyToOne
-    @JoinColumn(name = "idPatient")
     private Patient patient;
 
     private LocalDate date;
@@ -32,4 +32,5 @@ public class MedicalHistory {
     private TreatmentMedicalHistory treatmentMedicalHistory;
     @Enumerated(EnumType.STRING)
     private OutcomeMedicalHistory outcomeMedicalHistory;
+
 }

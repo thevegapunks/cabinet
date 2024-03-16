@@ -3,26 +3,32 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.List;
 
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class MedicalRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRecord;
 
     @OneToOne
-    @JoinColumn(name = "idPatient")
     private Patient patient;
 
     @OneToOne
     @JoinColumn(name = "idPrescription")
     private Prescription prescription;
 
-    @OneToOne
-    @JoinColumn(name = "idMedicalHistory")
-    private MedicalHistory medicalHistory;
+    @OneToMany
+    private List<MedicalHistory> medicalHistories;
+
+    private String medicalConditions;
+    @OneToMany
+    private List<SurgicalHistory> surgicalHistories;
 }

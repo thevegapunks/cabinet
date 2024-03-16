@@ -4,19 +4,22 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.List;
 
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class PatientInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idInfo;
 
     @OneToOne
-    @JoinColumn(name = "idPatient")
     private Patient patient;
     @Enumerated(EnumType.STRING)
     private BloodGroup bloodGroup;
@@ -24,8 +27,6 @@ public class PatientInfo {
     private Double height;
     private String bloodPressure;
     private String allergies;
-    private String medicalConditions;
-    private String medicalHistory;
-    private String surgicalHistory;
-    private String otherHistory;
+
+    private String specialNote;
 }
